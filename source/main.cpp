@@ -10,6 +10,14 @@ int main() {
     do {
         option = static_cast<ReportType>(getOption());   
         switch (option) {
+            case ReportType::InputPatients: {
+                inputPatients();
+                break;
+            }
+            case ReportType::ReadPatientsFromBinaryFile: {
+                readPatientsFromBinaryFile();
+                break;
+            }
             case ReportType::Records37: {
                 displayRecords37(patients, size);
                 break;

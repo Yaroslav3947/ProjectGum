@@ -3,12 +3,15 @@
 #include <Mantur.hpp>
 
 #include <string>
+#include <fstream>
 #include <iostream>
 
 const int MAX_PATIENTS = 100;
 
 enum class ReportType {
     ////TODO: make up numbers
+    InputPatients,
+    ReadPatientsFromBinaryFile,
     Records37,
     ElevatedHemoglobinWomen,
     YoungestNormalTemperatureReducedHemoglobinMen,
