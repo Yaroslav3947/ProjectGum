@@ -10,7 +10,6 @@ int getOption() {
     return option; 
 }
 
-
 int main(){
     return 0;
 }
