@@ -8,7 +8,8 @@ int main() {
 
     ReportType option;
     do {
-        option = static_cast<ReportType>(getOption());   
+        option = static_cast<ReportType>(getOption());
+        ////TODO: add other cases
         switch (option) {
             case ReportType::InputPatients: {
                 inputPatients();
