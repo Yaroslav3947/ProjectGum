@@ -5,6 +5,7 @@
 int main() {
     Patient *patients;
     int size;
+
     const std::string PATH_BIN = "patients.bin";
     const std::string PATH_TXT = "patients.txt";
 
@@ -14,7 +15,7 @@ int main() {
         ////TODO: add other cases
         switch (option) {
             case ReportType::InputPatients: {
-                inputPatients();
+                inputPatients(patients, PATH_BIN);
                 break;
             }
             case ReportType::ReadPatientsFromBinaryFile: {

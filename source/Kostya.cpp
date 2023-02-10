@@ -10,6 +10,7 @@ int getOption() {
     std::cin >> option;
     return option; 
 }
+
 void isNormalTemperature(double &temperature) {
     ////TODO: implement function check if temperature is ok 
 /*
@@ -31,3 +32,4 @@ void isNormalHemoglobin(double &hemoglobin) {
 */
 
 }
+
