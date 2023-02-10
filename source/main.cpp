@@ -5,6 +5,7 @@
 int main() {
     Patient *patients;
     int size;
+    const std::string PATH_BIN, PATH_TXT;
 
     ReportType option;
     do {
