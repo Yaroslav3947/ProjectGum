@@ -31,8 +31,8 @@ void savePatientsToBinaryFile(Patient *patients, int size, const std::string PAT
     binaryFile.close();
 }
 
-void addPatientToBinaryFile(Patient patient) {
-    const std::string pathToBinaryFile = "patients.bin";
+void addPatientToBinaryFile(Patient patient, const std::string &pathToBinaryFile) {
+    // const std::string pathToBinaryFile = "patients.bin";
     std::ofstream binaryFile(pathToBinaryFile, std::ios::binary | std::ios::app);
     if (!binaryFile) {
         std::cerr << "Can't open binary file\n";
@@ -51,8 +51,8 @@ void inputPatients() {
         2. Use here function void savePatientsToBinaryFile(Patient *patients, int size)
     */
 }
-void saveResultToTextFile(const Patient *patients, int size, ReportType reportType) {
-    const std::string pathToTxtFile = "patients.txt";
+void saveResultToTextFile(const Patient *patients, int size, const std::string &pathToTxtFile) {
+    // const std::string pathToTxtFile = "patients.txt";
     std::ofstream textFile(pathToTxtFile, std::ios::out);
     if (!textFile) {
         std::cerr << "Can't open text file\n";
@@ -62,8 +62,8 @@ void saveResultToTextFile(const Patient *patients, int size, ReportType reportTy
     ////TODO: implement the rest of function
     textFile.close();
 }
-void readPatientsFromBinaryFile() {
-    const std::string pathToBinaryFile = "patients.bin";
+void readPatientsFromBinaryFile(const std::string &pathToBinaryFile) {
+    // const std::string pathToBinaryFile = "patients.bin";
     std::ifstream binaryFile(pathToBinaryFile, std::ios::binary);
     if (!binaryFile.is_open()) {
         std::cerr << "Error opening file: " << std::endl;

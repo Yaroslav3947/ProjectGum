@@ -4,7 +4,7 @@
 void printHeadline();
 void inputPatients();
 void printPatient(const Patient &patient);
-void addPatientToBinaryFile(Patient patient);
-void savePatientsToBinaryFile(Patient *patients, int size);
-void readPatientsFromBinaryFile();
-void saveResultToTextFile(const Patient *patients, int size, ReportType reportType);
+void addPatientToBinaryFile(Patient patient, const std::string &pathToBinaryFile);
+void savePatientsToBinaryFile(Patient *patients, int size, const std::string PATH_BIN);
+void readPatientsFromBinaryFile(const std::string &pathToBinaryFile);
+void saveResultToTextFile(const Patient *patients, int size, const std::string &pathToTxtFile);

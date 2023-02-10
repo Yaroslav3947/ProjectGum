@@ -5,7 +5,8 @@
 int main() {
     Patient *patients;
     int size;
-    const std::string PATH_BIN, PATH_TXT;
+    const std::string PATH_BIN = "patients.bin";
+    const std::string PATH_TXT = "patients.txt";
 
     ReportType option;
     do {
@@ -17,7 +18,7 @@ int main() {
                 break;
             }
             case ReportType::ReadPatientsFromBinaryFile: {
-                readPatientsFromBinaryFile();
+                readPatientsFromBinaryFile(PATH_BIN);
                 break;
             }
             case ReportType::Records37: {
