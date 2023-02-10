@@ -9,9 +9,3 @@ void printPatient(const Patient &patient) {
 void printHeadline() {
     ////TODO: implement function
 }
-int getOption() {
-    int option;
-    std::cout << "Enter option: ";
-    std::cin >> option;
-    return option; 
-}
