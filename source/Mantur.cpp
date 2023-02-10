@@ -1,11 +1,10 @@
 #include <Mantur.hpp>
 
-int getLastID(std::string PATH) {
+int getLastID(const std::string &PATH) {
     Patient lastRecordInfo;
     int lastID = 0;
     std::fstream lastRecord(PATH, std::ios::binary | std::ios::in);
     while (lastRecord.read((char*)&lastRecordInfo, sizeof lastRecordInfo)) {
-        std::cout << "here\n";
         lastID = lastRecordInfo.ID;
     }
     lastRecord.close();
