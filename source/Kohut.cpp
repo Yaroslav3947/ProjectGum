@@ -27,7 +27,7 @@ void displayWomenWithElevatedHemoglobin(Patient *patients, int size) {
     const double HEMOGLOBIN_LIMIT = 110.0;
     int hasWomen = false;
     for (int i = 0; i < size; i++) {
-        if(patients[i].gender == "Female" && patients[i].hemoglobin > HEMOGLOBIN_LIMIT) {
+        if(patients[i].sex == "Female" && patients[i].hemoglobin > HEMOGLOBIN_LIMIT) {
             hasWomen = 1;
             break;
         }
@@ -36,7 +36,7 @@ void displayWomenWithElevatedHemoglobin(Patient *patients, int size) {
     if(hasWomen) {
         printHeadline();
         for (int i = 0; i < size; i++) {
-            if (patients[i].gender == "Female" && patients[i].hemoglobin > HEMOGLOBIN_LIMIT) {
+            if (patients[i].sex == "Female" && patients[i].hemoglobin > HEMOGLOBIN_LIMIT) {
                 printPatient(patients[i]);
             }
         }
@@ -54,7 +54,7 @@ void displayYoungestMenWithNormalTemperatureAndReducedHemoglobin(Patient *patien
     int youngestIndex = patients[0].ID;
 
     for (int i = 0; i < size; i++) {
-        if (patients[i].gender == "Male" && patients[i].temperature >= MIN_TEMPERATURE 
+        if (patients[i].sex == "Male" && patients[i].temperature >= MIN_TEMPERATURE 
             && patients[i].temperature <= MAX_TEMPERATURE && patients[i].hemoglobin < MIN_HEMOGLOBIN) {
             if (patients[i].getAge() < youngestAge) {
                 youngestAge = patients[i].getAge();
@@ -130,7 +130,7 @@ void sortByGender(Patient *patients, int size) {
     printHeadline();
     for (int i = 0; i < size - 1; i++) {
         for (int j = 0; j < size - i - 1; j++) {
-            if (patients[j].gender > patients[j + 1].gender) {
+            if (patients[j].sex > patients[j + 1].sex) {
                 Patient temp = patients[j];
                 patients[j] = patients[j + 1];
                 patients[j + 1] = temp;
