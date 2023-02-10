@@ -2,3 +2,4 @@
 
 void printPatient(const Patient &patient);
 void printHeadline();
+int getOption();
