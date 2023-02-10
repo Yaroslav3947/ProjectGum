@@ -1,4 +1,6 @@
 #include <Kohut.hpp>
+#include <Mantur.hpp>
+#include <Kostya.hpp>
 
 int main() {
     Patient *patients;
