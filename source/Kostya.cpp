@@ -9,3 +9,7 @@ int getOption() {
     std::cin >> option;
     return option; 
 }
+
+int main(){
+    return 0;
+}
