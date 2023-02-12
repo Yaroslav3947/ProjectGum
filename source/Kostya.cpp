@@ -20,6 +20,7 @@ int getOption() {
     std::cin >> option;
     return option; 
 }
+
 void isNormalTemperature(double &temperature) {
     const double MAX_TEMPERATURE = 45.0;
     const double MIN_TEMPERATURE = 35.0;
@@ -49,3 +50,4 @@ void isNormalHemoglobin(double &hemoglobin) {
         std::cin >> hemoglobin;
     }
 }
+
