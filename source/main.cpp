@@ -19,7 +19,7 @@ int main() {
                 break;
             }
             case ReportType::ReadPatientsFromBinaryFile: {
-                readPatientsFromBinaryFile(PATH_BIN);
+                readPatientsFromBinaryFile(patients, PATH_BIN);
                 break;
             }
             case ReportType::Records37: {
