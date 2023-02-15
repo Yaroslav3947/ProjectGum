@@ -1,6 +1,6 @@
 #include <Kohut.hpp>
 
-void displayRecords37(Patient *patients, int size) {
+void displayRecords37(std::vector<Patient> patients, int size) {
     const double TEMPERATURE_LIMIT = 37.2;
     bool hasRecords37 = false;
 
@@ -23,7 +23,7 @@ void displayRecords37(Patient *patients, int size) {
     }
 }
 
-void displayWomenWithElevatedHemoglobin(Patient *patients, int size) {
+void displayWomenWithElevatedHemoglobin(std::vector<Patient> patients, int size) {
     const double HEMOGLOBIN_LIMIT = 110.0;
     int hasWomen = false;
     for (int i = 0; i < size; i++) {
@@ -45,7 +45,7 @@ void displayWomenWithElevatedHemoglobin(Patient *patients, int size) {
         return;
     }
 }
-void displayYoungestMenWithNormalTemperatureAndReducedHemoglobin(Patient *patients, int size) {
+void displayYoungestMenWithNormalTemperatureAndReducedHemoglobin(std::vector<Patient> patients, int size) {
     const double MIN_TEMPERATURE = 36.0;
     const double MAX_TEMPERATURE = 37.2;
     const double MIN_HEMOGLOBIN = 110.0;
@@ -71,7 +71,7 @@ void displayYoungestMenWithNormalTemperatureAndReducedHemoglobin(Patient *patien
     printHeadline();
     printPatient(patients[youngestIndex]);
 }
-void displayOlderThan40WithElevatedHemoglobinAndDecreasedTemperature(Patient *patients, int size) {
+void displayOlderThan40WithElevatedHemoglobinAndDecreasedTemperature(std::vector<Patient> patients, int size) {
     const double MIN_HEMOGLOBIN = 110.0;
     const double MIN_TEMPERATURE = 36.0;
     const int MIN_AGE = 40;
@@ -101,7 +101,7 @@ int getAgeLimit() {
     std::cin >> ageLimit;
     return ageLimit;
 }
-void displayPatientsWithNormalTemperature(Patient *patients, int size) {
+void displayPatientsWithNormalTemperature(std::vector<Patient> patients, int size) {
     const int ageLimit = getAgeLimit();
     const double MIN_TEMPERATURE = 36.0;
     const double MAX_TEMPERATURE = 37.2;
@@ -126,8 +126,7 @@ void displayPatientsWithNormalTemperature(Patient *patients, int size) {
     }
 
 }
-void sortByGender(Patient *patients, int size) {
-    printHeadline();
+void sortByGender(std::vector<Patient> patients, int size) {
     for (int i = 0; i < size - 1; i++) {
         for (int j = 0; j < size - i - 1; j++) {
             if (patients[j].sex > patients[j + 1].sex) {
@@ -137,4 +136,29 @@ void sortByGender(Patient *patients, int size) {
             }
         }
     }
+    
+    printHeadline();
+    for(const auto patient: patients) {
+        printPatient(patient);
+    }
+
+}
+void printPatient(const Patient &patient) {
+    std::cout << std::setw(20) << std::left << patient.ID
+              << std::setw(20) << std::left << patient.surname
+              << std::setw(20) << std::left << patient.name
+              << std::setw(20) << std::left << patient.yearOfBirth
+              << std::setw(20) << std::left << patient.sex
+              << std::setw(20) << std::left << patient.temperature
+              << std::setw(20) << std::left << patient.hemoglobin << std::endl;
+}
+
+void printHeadline() {
+    std::cout << std::setw(20) << std::left << "ID"
+              << std::setw(20) << std::left << "surname"
+              << std::setw(20) << std::left << "name"
+              << std::setw(20) << std::left << "yearOfBirth"
+              << std::setw(20) << std::left << "sex"
+              << std::setw(20) << std::left << "temperature"
+              << std::setw(20) << std::left << "hemoglobin" << std::endl;
 }

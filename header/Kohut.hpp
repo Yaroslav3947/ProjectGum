@@ -1,39 +1,43 @@
 #pragma once
 
-#include <Mantur.hpp>
-
+#include <vector>
 #include <string>
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 
 const int MAX_PATIENTS = 100;
 
 enum class ReportType {
-    ////TODO: make up numbers
-    InputPatients,
+    InputPatients = 1,
     ReadPatientsFromBinaryFile,
+    writeToTxtFile,
     Records37,
     ElevatedHemoglobinWomen,
     YoungestNormalTemperatureReducedHemoglobinMen,
     OlderThan40ElevatedHemoglobinDecreasedTemperature,
     NormalTemperaturePatients,
-    GenderSortedPatients,
-    EXIT
+    GenderSortedPatients = 9,
+    EXIT = 10
 };
 
 struct Patient {
     int ID;
-    std::string surname;
-    std::string name;
+    char surname[100];
+    char name[100];
     int yearOfBirth;
-    std::string sex; // Male/Female
-    double hemoglobin, temperature;
+    char sex[100]; // Male/Female
+    double hemoglobin;
+    double temperature;
     int getAge() const { const int presentYear = 2023; return presentYear - yearOfBirth;};
 };
 
-void displayRecords37(Patient *patients, int size);
-void displayWomenWithElevatedHemoglobin(Patient *patients, int size);
-void displayYoungestMenWithNormalTemperatureAndReducedHemoglobin(Patient *patients, int size);
-void displayOlderThan40WithElevatedHemoglobinAndDecreasedTemperature(Patient *patients, int size);
-void displayPatientsWithNormalTemperature(Patient *patients, int size);
-void sortByGender(Patient *patients, int size);
+void displayRecords37(std::vector<Patient> patients, int size);
+void displayWomenWithElevatedHemoglobin(std::vector<Patient> patients, int size);
+void displayYoungestMenWithNormalTemperatureAndReducedHemoglobin(std::vector<Patient> patients, int size);
+void displayOlderThan40WithElevatedHemoglobinAndDecreasedTemperature(std::vector<Patient> patients, int size);
+void displayPatientsWithNormalTemperature(std::vector<Patient> patients, int size);
+void sortByGender(std::vector<Patient> patients, int size);
+
+void printPatient(const Patient &patient);
+void printHeadline();

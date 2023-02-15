@@ -12,27 +12,18 @@ int getLastID(const std::string &PATH) {
     return lastID + 1;
 }
 
-void printPatient(const Patient &patient) {
-    std::cout << std::setw(20) << std::right << patient.ID << std::setw(20) << std::right << patient.surname << std::setw(20) << std::right << patient.name << std::setw(20) << std::right << patient.yearOfBirth << std::setw(20) << std::right << patient.sex << std::setw(20) << std::right << patient.temperature << std::setw(20) << std::right << patient.hemoglobin << std::endl;
-}
-
-void printHeadline() {
-    std::cout << std::setw(20) << std::right << "ID" << std::setw(20) << std::right << "surname" << std::setw(20) << std::right << "name" << std::setw(20) << std::right << "yearOfBirth" << std::setw(20) << std::right << "sex" << std::setw(20) << std::right << "temperature" << std::setw(20) << std::right << "hemoglobin" << std::endl;
-
-}
 void savePatientsToBinaryFile(Patient *patients, int size, const std::string PATH_BIN) {
     std::ofstream binaryFile(PATH_BIN, std::ios::binary | std::ios::out);
     if (!binaryFile) {
         std::cerr << "Can't open binary file\n";
         return;
     }
-    binaryFile.write((char*)&patients, sizeof patients);
+    binaryFile.write((char*)patients, size * sizeof(Patient));
 
     binaryFile.close();
 }
 
-void addPatientToBinaryFile(Patient patient, const std::string &pathToBinaryFile) {
-    // const std::string pathToBinaryFile = "patients.bin";
+void addPatientToBinaryFile(Patient &patient, const std::string &pathToBinaryFile) {
     std::ofstream binaryFile(pathToBinaryFile, std::ios::binary | std::ios::app);
     if (!binaryFile) {
         std::cerr << "Can't open binary file\n";
@@ -42,28 +33,54 @@ void addPatientToBinaryFile(Patient patient, const std::string &pathToBinaryFile
 
     binaryFile.close();
 }
-void inputPatients(Patient patient, const std::string PATH) {
+
+void inputPatient(Patient &patient, const std::string &PATH) {
     patient.ID = getLastID(PATH);
 
+    std::cin.ignore(); 
+
+    std::cout << "Input surname: "; 
+    std::cin.getline(patient.surname, sizeof(patient.surname));
+    std::cout << patient.surname << std::endl;
+    
+    std::cout << "Input name: "; 
+    std::cin.getline(patient.name, sizeof(patient.name));
+    std::cout << patient.name << std::endl;
+    
+    std::cout << "Input year of birth: "; 
+    std::cin >> patient.yearOfBirth; 
+    std::cout << patient.yearOfBirth << std::endl;
     std::cin.ignore();
-    std::cout << "Input surname: "; getline(std::cin, patient.surname);
-    std::cout << "Input name: "; getline(std::cin, patient.name);
-    std::cout << "Input year of birth: "; std::cin >> patient.yearOfBirth; std::cin.ignore();
-    std::cout << "Input sex: "; getline(std::cin, patient.sex);
-    std::cout << "Input temperature: "; std::cin >> patient.temperature;
-    std::cout << "Input hemoglobin: "; std::cin >> patient.hemoglobin;
-
-    addPatientToBinaryFile(patient);
-
-    ////TODO: DONE
-
-    /*
-        1. Ask for number of patients to input and save them to the binaryfile with for loop
-        2. Use here function void savePatientsToBinaryFile(Patient *patients, int size)
-    */
+    
+    std::cout << "Input sex: "; 
+    std::cin.getline(patient.sex, sizeof(patient.sex));    
+    std::cout << patient.sex << std::endl;
+    
+    std::cout << "Input temperature: "; 
+    std::cin >> patient.temperature;
+    std::cout << patient.temperature << std::endl;
+    
+    std::cout << "Input hemoglobin: "; 
+    std::cin >> patient.hemoglobin;
+    std::cout << patient.hemoglobin << std::endl;
+    
+    std::cout << "Patient added\n";
 }
 
-void saveResultToTextFile(const Patient *patients, int size, ReportType reportType, const std::string PATH_TXT) {
+
+void inputPatients(const std::string &PATH) {
+    int n;
+    std::cout << "Enter the number of patients to input: ";
+    std::cin >> n;
+
+    Patient patient{};
+    for (int i = 0; i < n; i++) {
+        inputPatient(patient, PATH);
+        addPatientToBinaryFile(patient, PATH);
+    }
+}
+
+void saveResultToTextFile(const Patient *patients, int size, const std::string PATH_TXT) {
     std::ofstream textFile(PATH_TXT, std::ios::out);
 
     if (!textFile) {
@@ -71,21 +88,82 @@ void saveResultToTextFile(const Patient *patients, int size, ReportType reportTy
         return;
     }
 
-    ////TODO: implement the rest of function
+    textFile << std::setw(20) << std::right << "ID" << std::setw(20) << std::right << "surname" << std::setw(20) << std::right << "name" << std::setw(20) << std::right << "yearOfBirth" << std::setw(20) << std::right << "sex" << std::setw(20) << std::right << "temperature" << std::setw(20) << std::right << "hemoglobin" << std::endl;
+
+    for (int i = 0; i < size; i++) {
+        const Patient &patient = patients[i];
+        textFile << std::setw(20) << std::right << patient.ID << std::setw(20) << std::right << patient.surname << std::setw(20) << std::right << patient.name << std::setw(20) << std::right << patient.yearOfBirth << std::setw(20) << std::right << patient.sex << std::setw(20) << std::right << patient.temperature << std::setw(20) << std::right << patient.hemoglobin << std::endl;
+    }
+
     textFile.close();
 }
 
-void readPatientsFromBinaryFile(Patient patient, const std::string PATH_BIN) {
+void saveResultToTextFile(const std::string& PATH_BIN, const std::string& PATH_TXT) {
+    std::ifstream bin_file(PATH_BIN, std::ios::binary);
 
+    if (!bin_file) {
+        std::cerr << "Error: could not open binary file." << std::endl;
+        return;
+    }
+
+    // Read patient data from binary file
+    Patient patient;
+    bin_file.read((char*)&patient, sizeof(Patient));
+
+    bin_file.close();
+
+    // Write patient data to text file
+    std::ofstream txt_file(PATH_TXT);
+
+    if (!txt_file) {
+        std::cerr << "Error: could not open text file." << std::endl;
+        return;
+    }
+
+    txt_file << std::setw(20) << std::right << patient.ID << std::setw(20) << std::right 
+            << patient.surname << std::setw(20) << std::right << patient.name << std::setw(20) <<
+            std::right << patient.yearOfBirth << std::setw(20) << std::right << patient.sex <<
+            std::setw(20) << std::right << patient.temperature << std::setw(20) << std::right <<
+            patient.hemoglobin << std::endl;
+
+    txt_file.close();
+
+    std::cout << "Data copied from binary file to text file successfully!" << std::endl;
+}
+
+void readPatientsFromBinaryFile(const std::string PATH_BIN) {
     std::ifstream binaryFile(PATH_BIN, std::ios::binary);
 
     if (!binaryFile.is_open()) {
         std::cerr << "Error opening file: " << std::endl;
         return;
     }
+
+    printHeadline();
+
+    Patient patient;
     while (binaryFile.read((char*)&patient, sizeof patient)) {
         printPatient(patient);
     }
 
     binaryFile.close();
+}
+
+std::vector<Patient> getPatientsFromBinaryFile(const std::string &PATH_BIN) {
+    std::ifstream bin_file(PATH_BIN, std::ios::binary);
+
+    std::vector<Patient> patients {};
+
+    if (!bin_file) {
+        std::cerr << "Error: could not open binary file." << std::endl;
+    } else {
+        int num_patients{0};
+        Patient patient;
+        while (bin_file.read((char*)&patient, sizeof(Patient))) {
+            patients.push_back(patient);
+        }
+        bin_file.close();
+    }
+    return patients;
+    
 }

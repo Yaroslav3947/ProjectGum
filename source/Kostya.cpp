@@ -4,13 +4,14 @@ void showOptions() {
     std::cout << "Please choose one of the following options:\n"
         << "1. Input Patients\n"
         << "2. Read Patients from Binary File\n"
-        << "3. Records with age 37\n"
-        << "4. Women with elevated Hemoglobin levels\n"
-        << "5. Youngest men with normal temperature and reduced Hemoglobin levels\n"
-        << "6. People over 40 with elevated Hemoglobin levels and decreased temperature\n"
-        << "7. Patients with normal temperature\n"
-        << "8. Gender-sorted patients\n"
-        << "9. Exit\n";
+        << "3. Copy info from a .bin file to a .txt file\n"
+        << "4. Records with age 37\n"
+        << "5. Women with elevated Hemoglobin levels\n"
+        << "6. Youngest men with normal temperature and reduced Hemoglobin levels\n"
+        << "7. People over 40 with elevated Hemoglobin levels and decreased temperature\n"
+        << "8. Patients with normal temperature\n"
+        << "9. Gender-sorted patients\n"
+        << "10. Exit\n";
 }
 
 int getOption() {

@@ -1,3 +1,5 @@
+#pragma once
+
 #include <Kohut.hpp>
 
 void showOptions();
