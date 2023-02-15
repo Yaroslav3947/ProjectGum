@@ -1,6 +1,18 @@
+#pragma once
+
 #include <Kohut.hpp>
 #include <iomanip>
 #include <string>
+
+struct Patient {
+    int ID;
+    std::string surname;
+    std::string name;
+    int yearOfBirth;
+    std::string sex; // Male/Female
+    double hemoglobin, temperature;
+    int getAge() const { const int presentYear = 2023; return presentYear - yearOfBirth;};
+};
 
 int getLastID(std::string &PATH);
 void printHeadline();
