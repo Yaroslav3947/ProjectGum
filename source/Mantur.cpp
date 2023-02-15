@@ -33,6 +33,7 @@ void savePatientsToBinaryFile(Patient *patients, int size, std::string PATH_BIN)
 
 void addPatientToBinaryFile(Patient patient, std::string &pathToBinaryFile) {
     // const std::string pathToBinaryFile = "patients.bin";
+
     std::ofstream binaryFile(pathToBinaryFile, std::ios::binary | std::ios::app);
     if (!binaryFile) {
         std::cerr << "Can't open binary file\n";
@@ -42,7 +43,10 @@ void addPatientToBinaryFile(Patient patient, std::string &pathToBinaryFile) {
 
     binaryFile.close();
 }
-void inputPatients(Patient patient, std::string PATH) {
+void inputPatients(std::string PATH) {
+
+    Patient patient;
+
     patient.ID = getLastID(PATH);
 
     std::cin.ignore();
@@ -74,7 +78,10 @@ void saveResultToTextFile(Patient *patients, int size, std::string PATH_TXT) {
     textFile.close();
 }
 
-void readPatientsFromBinaryFile(Patient patient, std::string PATH_BIN) {
+
+void readPatientsFromBinaryFile(std::string PATH_BIN) {
+
+    Patient patient;
 
     std::ifstream binaryFile(PATH_BIN, std::ios::binary);
 

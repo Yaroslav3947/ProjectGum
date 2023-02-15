@@ -12,14 +12,13 @@ int main() {
     ReportType option;
     do {
         option = static_cast<ReportType>(getOption());
-        ////TODO: add other cases
         switch (option) {
             case ReportType::InputPatients: {
-                inputPatients(patients, PATH_BIN);
+                inputPatients(PATH_BIN);
                 break;
             }
             case ReportType::ReadPatientsFromBinaryFile: {
-                readPatientsFromBinaryFile(patients, PATH_BIN);
+                readPatientsFromBinaryFile(PATH_BIN);
                 break;
             }
             case ReportType::Records37: {
