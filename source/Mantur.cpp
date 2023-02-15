@@ -53,14 +53,7 @@ void inputPatients(Patient patient, const std::string PATH) {
     std::cout << "Input temperature: "; std::cin >> patient.temperature;
     std::cout << "Input hemoglobin: "; std::cin >> patient.hemoglobin;
 
-    addPatientToBinaryFile(patient);
-
-    ////TODO: DONE
-
-    /*
-        1. Ask for number of patients to input and save them to the binaryfile with for loop
-        2. Use here function void savePatientsToBinaryFile(Patient *patients, int size)
-    */
+    addPatientToBinaryFile(patient, PATH);
 }
 
 void saveResultToTextFile(const Patient *patients, int size, ReportType reportType, const std::string PATH_TXT) {
@@ -71,7 +64,13 @@ void saveResultToTextFile(const Patient *patients, int size, ReportType reportTy
         return;
     }
 
-    ////TODO: implement the rest of function
+    textFile << std::setw(20) << std::right << "ID" << std::setw(20) << std::right << "surname" << std::setw(20) << std::right << "name" << std::setw(20) << std::right << "yearOfBirth" << std::setw(20) << std::right << "sex" << std::setw(20) << std::right << "temperature" << std::setw(20) << std::right << "hemoglobin" << std::endl;
+
+    for (int i = 0; i < size; i++) {
+        textFile << std::setw(20) << std::right << patients[i].ID << std::setw(20) << std::right << patients[i].surname << std::setw(20) << std::right << patients[i].name << std::setw(20) << std::right << patients[i].yearOfBirth << std::setw(20) << std::right << patients[i].sex << std::setw(20) << std::right << patients[i].temperature << std::setw(20) << std::right << patients[i].hemoglobin << std::endl;
+    }
+
+
     textFile.close();
 }
 
