@@ -17,3 +17,6 @@
                   17               Natue                Olec                2001                male                36.2                 111
                   18               Smith               Denny                1999                male                38.2                 140
                   19             Belfort               Jorge                1965                male                  40                 105
+                  20            Protsuik               Sofia                2015              female                36.6                 105
+                  21         Korotniskya                 Ann                2005              female                  35                 120
+                  22             SOlomko                Ludm                2000              female                36.7                 125

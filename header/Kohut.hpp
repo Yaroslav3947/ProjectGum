@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iomanip>
 #include <iostream>
+#include <string.h>
 
 const int MAX_PATIENTS = 100;
 

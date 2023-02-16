@@ -1,5 +1,4 @@
 #include <Kohut.hpp>
-#include <string.h>
 
 
 void displayRecords37(std::vector<Patient> patients, int size) {
@@ -26,7 +25,7 @@ void displayRecords37(std::vector<Patient> patients, int size) {
 }
 
 void displayWomenWithElevatedHemoglobin(std::vector<Patient> patients, int size) {
-    const double HEMOGLOBIN_LIMIT = 110.0;
+    const double HEMOGLOBIN_LIMIT = 140.0;
     bool hasWomen = false;
     for (int i = 0; i < size; i++) {
         if(!strcmp(patients[i].sex, "female")) {
@@ -59,12 +58,12 @@ void displayYoungestMenWithNormalTemperatureAndReducedHemoglobin(std::vector<Pat
     int youngestIndex = patients[0].ID;
 
     for (int i = 0; i < size; i++) {
-        if (patients[i].sex == "male" && patients[i].temperature >= MIN_TEMPERATURE 
+        if (!(strcmp(patients[i].sex, "male")) && patients[i].temperature >= MIN_TEMPERATURE 
             && patients[i].temperature <= MAX_TEMPERATURE && patients[i].hemoglobin < MIN_HEMOGLOBIN) {
-            if (patients[i].getAge() < youngestAge) {
-                youngestAge = patients[i].getAge();
-                youngestIndex = i;
-            }
+                if (patients[i].getAge() < youngestAge) {
+                    youngestAge = patients[i].getAge();
+                    youngestIndex = i;
+                }
         }
     }
 

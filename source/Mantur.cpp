@@ -169,3 +169,9 @@ std::vector<Patient> getPatientsFromBinaryFile(const std::string &PATH_BIN) {
     return patients;
     
 }
+
+void logger(std::string log, std::string PATH_TXT) {
+    std::fstream logger(PATH_TXT, std::ios::app);
+
+    logger << log << std::endl;
+}

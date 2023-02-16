@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 
+void logger(std::string log, std::string PATH_TXT);
 void printHeadline();
 void inputPatient(Patient &patient, const std::string &PATH);
 void inputPatients(const std::string &PATH);
