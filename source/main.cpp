@@ -7,6 +7,9 @@ int main() {
     const std::string PATH_TXT = "patients.txt";
 
     ReportType option;
+
+    std::vector<Patient> patients;
+    int size;
     do {
         option = static_cast<ReportType>(getOption());
         switch (option) {

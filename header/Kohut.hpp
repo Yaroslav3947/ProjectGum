@@ -37,7 +37,7 @@ void displayWomenWithElevatedHemoglobin(std::vector<Patient> patients, int size)
 void displayYoungestMenWithNormalTemperatureAndReducedHemoglobin(std::vector<Patient> patients, int size);
 void displayOlderThan40WithElevatedHemoglobinAndDecreasedTemperature(std::vector<Patient> patients, int size);
 void displayPatientsWithNormalTemperature(std::vector<Patient> patients, int size);
-void sortByGender(std::vector<Patient> patients, int size);
+void sortByGender(std::vector<Patient> &patients, int size);
 
 void printPatient(const Patient &patient);
 void printHeadline();

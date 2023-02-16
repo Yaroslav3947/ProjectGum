@@ -1,4 +1,6 @@
 #include <Kohut.hpp>
+#include <string.h>
+
 
 void displayRecords37(std::vector<Patient> patients, int size) {
     const double TEMPERATURE_LIMIT = 37.2;
@@ -25,18 +27,21 @@ void displayRecords37(std::vector<Patient> patients, int size) {
 
 void displayWomenWithElevatedHemoglobin(std::vector<Patient> patients, int size) {
     const double HEMOGLOBIN_LIMIT = 110.0;
-    int hasWomen = false;
+    bool hasWomen = false;
     for (int i = 0; i < size; i++) {
-        if(patients[i].sex == "female" && patients[i].hemoglobin > HEMOGLOBIN_LIMIT) {
-            hasWomen = 1;
-            break;
+        if(!strcmp(patients[i].sex, "female")) {
+            if(patients[i].hemoglobin > HEMOGLOBIN_LIMIT) {
+                std::cout << "TEST2\n";
+                hasWomen = 1;
+                break;
+            }
         }
     }
 
     if(hasWomen) {
         printHeadline();
         for (int i = 0; i < size; i++) {
-            if (patients[i].sex == "female" && patients[i].hemoglobin > HEMOGLOBIN_LIMIT) {
+            if (!strcmp(patients[i].sex, "female") && patients[i].hemoglobin > HEMOGLOBIN_LIMIT) {
                 printPatient(patients[i]);
             }
         }
@@ -115,7 +120,6 @@ void displayPatientsWithNormalTemperature(std::vector<Patient> patients, int siz
     }
 
     if (hasPeople) {
-        printHeadline();
         for (int i = 0; i < size; i++) {
             if (patients[i].getAge() < ageLimit && patients[i].temperature >= MIN_TEMPERATURE && patients[i].temperature <= MAX_TEMPERATURE) {
                 std::cout << patients[i].surname << ", good job!" << std::endl;
@@ -126,23 +130,7 @@ void displayPatientsWithNormalTemperature(std::vector<Patient> patients, int siz
     }
 
 }
-void sortByGender(std::vector<Patient> patients, int size) {
-    for (int i = 0; i < size - 1; i++) {
-        for (int j = 0; j < size - i - 1; j++) {
-            if (patients[j].sex > patients[j + 1].sex) {
-                Patient temp = patients[j];
-                patients[j] = patients[j + 1];
-                patients[j + 1] = temp;
-            }
-        }
-    }
-    
-    printHeadline();
-    for(const auto patient: patients) {
-        printPatient(patient);
-    }
 
-}
 void printPatient(const Patient &patient) {
     std::cout << std::setw(20) << std::left << patient.ID
               << std::setw(20) << std::left << patient.surname

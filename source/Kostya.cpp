@@ -51,9 +51,20 @@ void isNormalHemoglobin(double &hemoglobin) {
         std::cin >> hemoglobin;
     }
 }
-void isSexOk(char *sex) {    
-    while (sex != "male" && sex != "female") {
-        std::cout << "Enter the sex again: ";
-        std::cin.getline(sex, sizeof(sex));
+void sortByGender(std::vector<Patient> &patients, int size) {
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (strlen(patients[j].sex) > strlen(patients[j + 1].sex) ) {
+                Patient temp = patients[j];
+                patients[j] = patients[j + 1];
+                patients[j + 1] = temp;
+            }
+        }
     }
+    
+    printHeadline();
+    for(const auto patient: patients) {
+        printPatient(patient);
+    }
+
 }

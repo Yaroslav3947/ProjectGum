@@ -57,7 +57,7 @@ void inputPatient(Patient &patient, const std::string &PATH) {
     std::cout << "Input sex: "; 
     std::cin.getline(patient.sex, sizeof(patient.sex));    
     // std::cout << patient.sex << std::endl;
-    isSexOk(patient.sex);
+    // isSexOk(patient.sex);
     
     std::cout << "Input temperature: "; 
     std::cin >> patient.temperature;
@@ -112,26 +112,23 @@ void saveResultToTextFile(const std::string& PATH_BIN, const std::string& PATH_T
     }
 
     // Read patient data from binary file
+    std::ofstream txt_file(PATH_TXT);
     Patient patient;
-    bin_file.read((char*)&patient, sizeof(Patient));
+
+    while(bin_file.read((char*)&patient, sizeof(Patient))) {
+        txt_file << std::setw(20) << std::right << patient.ID << std::setw(20) << std::right 
+                << patient.surname << std::setw(20) << std::right << patient.name << std::setw(20) <<
+                std::right << patient.yearOfBirth << std::setw(20) << std::right << patient.sex <<
+                std::setw(20) << std::right << patient.temperature << std::setw(20) << std::right <<
+                patient.hemoglobin << std::endl;
+    }
 
     bin_file.close();
 
     // Write patient data to text file
-    std::ofstream txt_file(PATH_TXT);
-
-    if (!txt_file) {
-        std::cerr << "Error: could not open text file." << std::endl;
-        return;
-    }
-
-    txt_file << std::setw(20) << std::right << patient.ID << std::setw(20) << std::right 
-            << patient.surname << std::setw(20) << std::right << patient.name << std::setw(20) <<
-            std::right << patient.yearOfBirth << std::setw(20) << std::right << patient.sex <<
-            std::setw(20) << std::right << patient.temperature << std::setw(20) << std::right <<
-            patient.hemoglobin << std::endl;
 
     txt_file.close();
+    bin_file.close();
 
     std::cout << "Data copied from binary file to text file successfully!" << std::endl;
 }
