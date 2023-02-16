@@ -51,4 +51,9 @@ void isNormalHemoglobin(double &hemoglobin) {
         std::cin >> hemoglobin;
     }
 }
-
+void isSexOk(char *sex) {    
+    while (sex != "male" || sex != "female") {
+        std::cout << "Enter the sex again: ";
+        std::cin.getline(sex, sizeof(sex));
+    }
+}

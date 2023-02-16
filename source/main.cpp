@@ -58,6 +58,9 @@ int main() {
                 sortByGender(patients, size);
                 break;
             }
+            case ReportType::EXIT: {
+                break;
+            }
             default: {
                 std::cerr << "We don't have this option\n";
                 break;

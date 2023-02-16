@@ -1,4 +1,5 @@
 #include <Mantur.hpp>
+#include <Kostya.hpp>
 
 int getLastID(const std::string &PATH) {
     Patient lastRecordInfo;
@@ -45,24 +46,28 @@ void inputPatient(Patient &patient, const std::string &PATH) {
     
     std::cout << "Input name: "; 
     std::cin.getline(patient.name, sizeof(patient.name));
-    std::cout << patient.name << std::endl;
+    // std::cout << patient.name << std::endl;
     
     std::cout << "Input year of birth: "; 
     std::cin >> patient.yearOfBirth; 
-    std::cout << patient.yearOfBirth << std::endl;
+    // std::cout << patient.yearOfBirth << std::endl;
+    isNormalYearOfBirth(patient.yearOfBirth);
     std::cin.ignore();
     
     std::cout << "Input sex: "; 
     std::cin.getline(patient.sex, sizeof(patient.sex));    
-    std::cout << patient.sex << std::endl;
+    // std::cout << patient.sex << std::endl;
+    isSexOk(patient.sex);
     
     std::cout << "Input temperature: "; 
     std::cin >> patient.temperature;
-    std::cout << patient.temperature << std::endl;
+    isNormalTemperature(patient.temperature);
+    // std::cout << patient.temperature << std::endl;
     
     std::cout << "Input hemoglobin: "; 
     std::cin >> patient.hemoglobin;
-    std::cout << patient.hemoglobin << std::endl;
+    isNormalHemoglobin(patient.hemoglobin);
+    // std::cout << patient.hemoglobin << std::endl;
     
     std::cout << "Patient added\n";
 }

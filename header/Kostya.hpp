@@ -7,3 +7,4 @@ int getOption();
 void isNormalTemperature(double &temperature);
 void isNormalYearOfBirth(int &yearOfBirth);
 void isNormalHemoglobin(double &hemoglobin);
+void isSexOk(char *sex);
